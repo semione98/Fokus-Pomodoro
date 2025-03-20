@@ -24,3 +24,47 @@ musicaCheckbox.addEventListener('change', () => {
         musica.pause();
     }
 });
+
+
+//lister no botão de foco para alternar contexto html e temporizador
+focoBtn.addEventListener('click', () => {
+    html.setAttribute('data-contexto', 'foco');
+    focoBtn.classList.add('active');
+    curtoBtn.classList.remove('active');
+    longBtn.classList.remove('active');
+    titulo.innerHTML = `<h1 class="app__title">
+                Otimize sua produtividade,<br>
+                <strong class="app__title-strong">mergulhe no que importa.</strong>
+            </h1>
+            `;
+    banner.src = 'assets/imagens/foco.png';
+});
+
+//lister no botão de curto para alternar contexto html e temporizador
+curtoBtn.addEventListener('click', () => {
+    html.setAttribute('data-contexto', 'descanso-curto');
+    focoBtn.classList.remove('active');
+    curtoBtn.classList.add('active');
+    longBtn.classList.remove('active');
+    titulo.innerHTML = `<h1 class="app__title">
+                Otimize sua produtividade,<br>
+                <strong class="app__title-strong">mergulhe no que importa.</strong>
+            </h1>
+            
+            `;
+    banner.src = 'assets/imagens/descanso-curto.png';
+});
+
+//lister no botão de longo para alternar contexto html e temporizador
+longBtn.addEventListener('click', () => {
+    html.setAttribute('data-contexto', 'descanso-longo');
+    focoBtn.classList.remove('active');
+    curtoBtn.classList.remove('active');
+    longBtn.classList.add('active');
+    titulo.innerHTML = `<h1 class="app__title">
+                Otimize sua produtividade,<br>
+                <strong class="app__title-strong">mergulhe no que importa.</strong>
+            </h1>
+            `;  
+    banner.src = 'assets/imagens/descanso-longo.png';
+});
