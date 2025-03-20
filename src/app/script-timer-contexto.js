@@ -88,3 +88,26 @@ function mostrarTemporizador() {
 
     divTimer.innerHTML = `${timerFormatado}`;	
 }
+
+function startTimer(){
+    if(intervaloId){
+        clearInterval(intervaloId);
+        intervaloId = null;
+    }else{
+        intervaloId = setInterval(()=>{
+            if(tempoDecorridoEmSegundos<=0){
+                alert('Tempo finalizado');
+                clearInterval(intervaloId);
+                intervaloId = null;
+                return
+            }
+            tempoDecorridoEmSegundos--;
+            mostrarTemporizador();
+        },1000)
+    }
+}
+
+mostrarTemporizador();
+
+startPauseBtn.addEventListener('click', startTimer);
+
