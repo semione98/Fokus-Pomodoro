@@ -8,7 +8,7 @@ const botoesTipoTimer = document.querySelectorAll('.app__card-button');
 const startPauseBtn = document.querySelector('#start-pause');
 const startPauseSpan = document.querySelector('#start-pause span');
 const startPauseImg = document.querySelector('#start-pause img');
-const divTiemr = document.querySelector('#timer');
+const divTimer = document.querySelector('#timer');
 
 const musicaCheckbox = document.querySelector('#alternar-musica');
 const musica = new Audio('/assets/sons/luna-rise-part-one.mp3');
@@ -38,6 +38,9 @@ focoBtn.addEventListener('click', () => {
             </h1>
             `;
     banner.src = 'assets/imagens/foco.png';
+
+    tempoDecorridoEmSegundos = 1500;
+    mostrarTemporizador();
 });
 
 //lister no botão de curto para alternar contexto html e temporizador
@@ -53,6 +56,9 @@ curtoBtn.addEventListener('click', () => {
             
             `;
     banner.src = 'assets/imagens/descanso-curto.png';
+
+    tempoDecorridoEmSegundos = 300;
+    mostrarTemporizador();
 });
 
 //lister no botão de longo para alternar contexto html e temporizador
@@ -67,4 +73,18 @@ longBtn.addEventListener('click', () => {
             </h1>
             `;  
     banner.src = 'assets/imagens/descanso-longo.png';
+
+    tempoDecorridoEmSegundos = 900;
+    mostrarTemporizador();
 });
+
+//function para formatar o temporizador e mostrar na tela.
+function mostrarTemporizador() {
+    const timer = new Date(tempoDecorridoEmSegundos * 1000);
+    const timerFormatado = timer.toLocaleTimeString('pt-BR', {
+        minute: '2-digit',
+        second: '2-digit'
+    });
+
+    divTimer.innerHTML = `${timerFormatado}`;	
+}
