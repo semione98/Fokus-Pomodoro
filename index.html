@@ -15,6 +15,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="src/styles/styles.css">
+    <script src="src/app/script-timer-contexto.js" defer></script>
 </head>
 <body>
     <main class="app">
@@ -50,7 +51,9 @@
                             longo</button>
                     </li>
                 </ul>
-                <div id="timer" class="app__card-timer"></div>
+                <div id="timer" class="app__card-timer">
+
+                </div>
                 <ul class="app__card-list">
                     <li class="app__card-list-item">
                         <label class="toggle">
@@ -68,6 +71,9 @@
                     <button id="start-pause" class="app__card-primary-button">
                         <img class="app__card-primary-butto-icon" src="assets/imagens/play_arrow.png" alt="">
                         <span>Começar</span>
+                    </button>
+                    <button id="refresh-timer" class="app__card-secondary-button">
+                        <img src="assets/icons/refresh_icon.svg" alt="Reset Timer">
                     </button>
                 </div>
             </div>
