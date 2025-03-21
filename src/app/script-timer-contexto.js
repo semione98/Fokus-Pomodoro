@@ -33,16 +33,7 @@ musicaCheckbox.addEventListener('change', () => {
 
 //lister no botão de foco para alternar contexto html e temporizador
 focoBtn.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'foco');
-    focoBtn.classList.add('active');
-    curtoBtn.classList.remove('active');
-    longBtn.classList.remove('active');
-    titulo.innerHTML = `<h1 class="app__title">
-                Otimize sua produtividade,<br>
-                <strong class="app__title-strong">mergulhe no que importa.</strong>
-            </h1>
-            `;
-    banner.src = 'assets/imagens/foco.png';
+    alternarContexto('foco');
 
     tempoDecorridoEmSegundos = 1500;
     mostrarTemporizador();
@@ -51,17 +42,7 @@ focoBtn.addEventListener('click', () => {
 
 //lister no botão de curto para alternar contexto html e temporizador
 curtoBtn.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'descanso-curto');
-    focoBtn.classList.remove('active');
-    curtoBtn.classList.add('active');
-    longBtn.classList.remove('active');
-    titulo.innerHTML = `<h1 class="app__title">
-                Otimize sua produtividade,<br>
-                <strong class="app__title-strong">mergulhe no que importa.</strong>
-            </h1>
-            
-            `;
-    banner.src = 'assets/imagens/descanso-curto.png';
+    alternarContexto('descanso-curto');
 
     tempoDecorridoEmSegundos = 300;
     mostrarTemporizador();
@@ -70,21 +51,55 @@ curtoBtn.addEventListener('click', () => {
 
 //lister no botão de longo para alternar contexto html e temporizador
 longBtn.addEventListener('click', () => {
-    html.setAttribute('data-contexto', 'descanso-longo');
-    focoBtn.classList.remove('active');
-    curtoBtn.classList.remove('active');
-    longBtn.classList.add('active');
-    titulo.innerHTML = `<h1 class="app__title">
-                Otimize sua produtividade,<br>
-                <strong class="app__title-strong">mergulhe no que importa.</strong>
-            </h1>
-            `;  
-    banner.src = 'assets/imagens/descanso-longo.png';
+    alternarContexto('descanso-longo');
 
     tempoDecorridoEmSegundos = 900;
     mostrarTemporizador();
     clearInterval(intervaloId);
 });
+
+//function para alternar contexto com reaproveitamento.
+function alternarContexto(contexto){
+    botoesTipoTimer.forEach(botao => {
+        botao.classList.remove('active');
+    })
+
+    switch(contexto){
+        case 'foco':
+            focoBtn.classList.add('active');
+            html.setAttribute('data-contexto', 'foco');
+            banner.src = 'assets/imagens/foco.png';
+
+            titulo.innerHTML = `<h1 class="app__title">
+                Otimize sua produtividade,<br>
+                <strong class="app__title-strong">mergulhe no que importa.</strong>
+            </h1>
+            `;
+            break;
+        case 'descanso-curto':
+            curtoBtn.classList.add('active');
+            html.setAttribute('data-contexto', 'descanso-curto');
+            banner.src = 'assets/imagens/descanso-curto.png';
+
+            titulo.innerHTML = `<h1 class="app__title">
+                Que tal dar uma respirada?<br>
+                <strong class="app__title-strong">Faça uma pausa curta .</strong>
+            </h1>
+            `;
+            break;
+        case 'descanso-longo':
+            longBtn.classList.add('active');
+            html.setAttribute('data-contexto', 'descanso-longo');
+            banner.src = 'assets/imagens/descanso-longo.png';
+
+            titulo.innerHTML = `<h1 class="app__title">
+                Hora de voltar à superfície.<br>
+                <strong class="app__title-strong">Faça uma pausa longa.</strong>
+            </h1>
+            `;
+            break;
+    }
+}
 
 //function para formatar o temporizador e mostrar na tela.
 function mostrarTemporizador() {
