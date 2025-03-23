@@ -424,6 +424,27 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Montserrat;
 }
 
+.li-checked{
+    background: #0F725C !important;
+}
+
+input[type="checkbox"] {
+    background: #eee;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    appearance: none;
+  }
+
+  input[type="checkbox"]:checked {
+    background-image: url('/assets/icons/Check_verde.png');
+  }
+
+
+
 .app__section-task-list-item-complete.app__section-task-list-item {
     background: var(--fundo-card-concludo);
     cursor: inherit;

@@ -6,8 +6,97 @@ const buttonDeleteForm = document.querySelector('.app__form-footer__button--dele
 const inputTask = document.querySelector('.app__form-textarea');
 const sectionTaskList = document.querySelector('.app__section-task-list');
 
-const taskList = [];
+const taskList = JSON.parse(localStorage.getItem('taskList')) || [];
+let idTask = taskList.length || 0;
+
+function atualizaLocalStorage() {
+    localStorage.setItem('taskList', JSON.stringify(taskList));
+}
 
 buttonOpenForm.addEventListener('click', () => {
     formAddTask.classList.toggle('show');
+});
+
+buttonConfirmForm.addEventListener('click', (event) => {
+    event.preventDefault();
+    const task = {
+        descricao: inputTask.value,
+        concluida: false
+    };
+
+    taskList.push(task);
+    atualizaLocalStorage();
+
+    const elementoTarefa = criarElementoTarefa(task);
+
+    sectionTaskList.appendChild(elementoTarefa);
+
+    inputTask.value = '';
+    formAddTask.classList.remove('show');
+
+});
+
+function criarElementoTarefa(tarefa) {
+    const li = document.createElement('li');
+    li.classList.add('app__section-task-list-item');
+
+    const checkBox = document.createElement('input');
+    checkBox.setAttribute('type', 'checkbox');
+    idTask++;
+    checkBox.id = idTask;
+
+    checkBox.addEventListener('change', () => {
+        if (checkBox.checked) {
+            tarefa.concluida = true;
+            li.classList.add('app__section-task-list-item-complete');
+            atualizaLocalStorage();
+
+        }else{
+            tarefa.concluida = false;
+            li.classList.remove('app__section-task-list-item-complete');
+            atualizaLocalStorage();
+        }
+    });
+
+    if(tarefa.concluida){
+        li.classList.add('app__section-task-list-item-complete');
+        checkBox.checked = true;
+    }
+
+    const taskName = document.createElement('p');
+    taskName.textContent = tarefa.descricao;
+    taskName.classList.add('app__section-task-list-item-description');
+
+    const buttonEdit = document.createElement('button');
+    buttonEdit.classList.add('app_button-edit');
+
+    const buttonImg = document.createElement('img');
+    buttonImg.src = 'assets/icons/edit.png';
+    buttonEdit.appendChild(buttonImg);
+
+    buttonEdit.onclick = ()=>{
+        const inputEdit = prompt('Digite a nova tarefa')
+        if(inputEdit){
+            taskName.textContent = inputEdit;
+            tarefa.descricao = inputEdit;
+            atualizaLocalStorage();
+        }else{
+            alert('Tarefa não alterada, digite algo.')
+        }
+    }
+
+
+
+
+    li.appendChild(checkBox);
+    li.appendChild(taskName);
+    li.appendChild(buttonEdit);
+
+    return li;
+}
+
+taskList.forEach(element => {
+    const elementoTarefa = criarElementoTarefa(element);
+    sectionTaskList.appendChild(elementoTarefa);
+    
 });
