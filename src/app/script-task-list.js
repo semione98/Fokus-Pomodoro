@@ -22,10 +22,23 @@ buttonOpenForm.addEventListener('click', () => {
 
 buttonConfirmForm.addEventListener('click', (event) => {
     event.preventDefault();
+    const dataAtual = new Date();
+    const options = {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    };
+
+    const dataFormatada = dataAtual.toLocaleString('pt-BR', options);
+
     const task = {
         descricao: inputTask.value,
-        concluida: false
+        concluida: false,
+        dataTask: dataFormatada
     };
+    console.log(task);
 
     taskList.push(task);
     atualizaLocalStorage();
@@ -42,6 +55,10 @@ buttonConfirmForm.addEventListener('click', (event) => {
 function criarElementoTarefa(tarefa) {
     const li = document.createElement('li');
     li.classList.add('app__section-task-list-item');
+
+    const divItemNav = document.createElement('div');
+    divItemNav.classList.add('app__section-task-list-item-nav');
+
 
     const checkBox = document.createElement('input');
     checkBox.setAttribute('type', 'checkbox');
@@ -63,18 +80,39 @@ function criarElementoTarefa(tarefa) {
         }
     });
 
+    divItemNav.appendChild(checkBox);
 
+    const divItemText = document.createElement('div');
+    divItemText.classList.add('app__section-task-list-item-text');
 
     const taskName = document.createElement('p');
     taskName.textContent = tarefa.descricao;
     taskName.classList.add('app__section-task-list-item-description');
 
+    const taskDate = document.createElement('p');
+    taskDate.textContent = tarefa.dataTask;
+    taskDate.classList.add('app__section-task-list-item-date'); 
+
+    divItemText.appendChild(taskName);
+    divItemText.appendChild(taskDate);
+    divItemNav.appendChild(divItemText);
+
+    const divItemButton = document.createElement('div');
+    divItemButton.classList.add('app__section-task-list-item-button');
+
+    const buttonDelete = document.createElement('button');
+    buttonDelete.classList.add('app_button-delete');
+    const buttonDeleteImg = document.createElement('img');
+    buttonDeleteImg.src = 'assets/icons/delete.png';
+    buttonDelete.appendChild(buttonDeleteImg);
+    buttonDelete.onclick = () => {
+        
+    }
     const buttonEdit = document.createElement('button');
     buttonEdit.classList.add('app_button-edit');
-
-    const buttonImg = document.createElement('img');
-    buttonImg.src = 'assets/icons/edit.png';
-    buttonEdit.appendChild(buttonImg);
+    const buttonEditImg = document.createElement('img');
+    buttonEditImg.src = 'assets/icons/edit.png';
+    buttonEdit.appendChild(buttonEditImg);
 
     buttonEdit.onclick = ()=>{
         const inputEdit = prompt('Digite a nova tarefa')
@@ -87,12 +125,12 @@ function criarElementoTarefa(tarefa) {
         }
     }
 
+    divItemButton.appendChild(buttonEdit);
+    divItemButton.appendChild(buttonDelete);
 
+    li.appendChild(divItemNav);
+    li.appendChild(divItemButton);
 
-
-    li.appendChild(checkBox);
-    li.appendChild(taskName);
-    li.appendChild(buttonEdit);
 
     if(tarefa.concluida){
         li.classList.add('app__section-task-list-item-complete');

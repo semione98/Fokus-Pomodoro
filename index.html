@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-contexto="foco">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,6 +19,7 @@
     <script src="src/app/script-timer-contexto.js" defer></script>
     <script src="src/app/script-task-list.js" defer></script>
 </head>
+
 <body>
     <main class="app">
         <header class="app__header">
@@ -54,7 +56,7 @@
                         </li>
                     </ul>
                     <div id="timer" class="app__card-timer">
-    
+
                     </div>
                     <ul class="app__card-list">
                         <li class="app__card-list-item">
@@ -80,7 +82,7 @@
                     </div>
                 </div>
             </section>
-    
+
             <section class="app__section-task-container">
                 <div class="app__section-task-content">
                     <header class="app__section-active-task">
@@ -110,7 +112,25 @@
                         </div>
                     </div>
                     <ul class="app__section-task-list">
-                        
+                        <li class="app__section-task-list-item">
+                            
+                            <div class="app__section-task-list-item-nav">
+                                <input type="checkbox" id="4">
+                                <div class="app__section-task-list-item-text">
+                                    <p class="app__section-task-list-item-description">mudei o teste</p>
+                                    <p class="app__section-task-list-item-date">
+                                        24/03/2025, 16:42
+                                    </p>
+                                </div>
+                            </div>
+                    
+                            <div class="app__section-task-list-item-button">
+                                <button class="app_button-edit"><img src="assets/icons/edit.png"></button>
+                                <button class="app_button-delete"><img src="assets/icons/delete.png"></button>
+                            </div>
+
+                        </li>
+
                     </ul>
                     <form class="app__form-add-task" aria-hidden="true">
                         <div class="app__form-field">
@@ -139,7 +159,7 @@
                 </div>
             </section>
 
-            
+
         </div>
 
         <footer class="app__footer">
@@ -148,8 +168,9 @@
                 Entre em contato em: carlosemione163@gmail.com
             </p>
         </footer>
-        
+
     </main>
-    
+
 </body>
+
 </html>
