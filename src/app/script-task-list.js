@@ -12,6 +12,8 @@ const buttonRemoveConcluidas = document.getElementById('btn-remover-concluidas')
 let taskList = JSON.parse(localStorage.getItem('taskList')) || [];
 let idTask = taskList.length || 0;
 
+
+
 function atualizaLocalStorage() {
     localStorage.setItem('taskList', JSON.stringify(taskList));
 }
@@ -34,11 +36,11 @@ buttonConfirmForm.addEventListener('click', (event) => {
     const dataFormatada = dataAtual.toLocaleString('pt-BR', options);
 
     const task = {
+        id: idTask,
         descricao: inputTask.value,
         concluida: false,
         dataTask: dataFormatada
     };
-    console.log(task);
 
     taskList.push(task);
     atualizaLocalStorage();
@@ -62,7 +64,6 @@ function criarElementoTarefa(tarefa) {
 
     const checkBox = document.createElement('input');
     checkBox.setAttribute('type', 'checkbox');
-    idTask++;
     checkBox.id = idTask;
 
     checkBox.addEventListener('change', () => {
@@ -106,6 +107,11 @@ function criarElementoTarefa(tarefa) {
     buttonDeleteImg.src = 'assets/icons/delete.png';
     buttonDelete.appendChild(buttonDeleteImg);
     buttonDelete.onclick = () => {
+        let idCheck = checkBox.id;
+        taskList = taskList.filter(task => task.id != idCheck);
+        
+        atualizaLocalStorage();
+        sectionTaskList.removeChild(li);
         
     }
     const buttonEdit = document.createElement('button');
@@ -170,8 +176,9 @@ function criarElementoTarefa(tarefa) {
 
 
 
-
+    idTask++;
     return li;
+    
 }
 
 taskList.forEach(element => {
@@ -192,7 +199,7 @@ function removeTasks(x){
 
         taskList = taskList.filter(tarefa => tarefa.concluida == false);
             atualizaLocalStorage();
-            console.log(taskList);
+            
     }else{
         const todasTasks = document.querySelectorAll('.app__section-task-list-item');
         todasTasks.forEach(element => {
@@ -201,7 +208,7 @@ function removeTasks(x){
         }) 
         taskList = [];
         atualizaLocalStorage();
-        console.log(taskList);
+        
     }
 }
 

@@ -633,7 +633,7 @@ input[type="checkbox"] {
 .app__section-task-list-item-date{
     flex-grow: 1;
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-style: normal;
     font-weight: 600;
     line-height: 150%;
