@@ -17,7 +17,7 @@ function atualizaLocalStorage() {
 }
 
 buttonOpenForm.addEventListener('click', () => {
-    formAddTask.classList.toggle('show');
+    formAddTask.classList.add('show');
 });
 
 buttonConfirmForm.addEventListener('click', (event) => {
@@ -173,4 +173,12 @@ buttonRemoveConcluidas.addEventListener('click', () => {
 
 buttonRemoveTodas.addEventListener('click', () => { 
     removeTasks(false);
+});
+
+buttonCloseForm.addEventListener('click', () => {
+    formAddTask.classList.remove('show');
+});
+
+buttonDeleteForm.addEventListener('click', () => {
+    inputTask.value = '';
 });

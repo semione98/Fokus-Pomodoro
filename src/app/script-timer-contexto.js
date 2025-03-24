@@ -19,7 +19,7 @@ const musicaPause = new Audio('/assets/sons/pause.mp3');
 const musicaPlay = new Audio('/assets/sons/play.wav');
 const musicaAlertFinalizado = new Audio('/assets/sons/beep.mp3');
 
-let tempoDecorridoEmSegundos = 1500;
+let tempoDecorridoEmSegundos = 5;
 let intervaloId = null;
 
 musicaCheckbox.addEventListener('change', () => {
@@ -130,7 +130,7 @@ function startTimer(){
                 alert('Tempo finalizado');
                 clearInterval(intervaloId);
                 intervaloId = null;
-                musica.pause();
+                
                 return
             }
             tempoDecorridoEmSegundos--;

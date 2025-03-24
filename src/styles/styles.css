@@ -76,6 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 .app__section-card-container {
     display: flex;
     justify-content: center;
+    max-height: 530px
 }
 
 .app__card {
@@ -83,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 0.2rem solid var(--azul-royal);
     background: var(--fundo-card-timer);
     padding: 2.4rem;
-    margin: 8rem 0;
+    margin: 3rem 0 8rem 0;
     width: 59rem;
     max-width: 90%;
 }
@@ -122,7 +123,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-secondary);
     text-align: center;
     font-family: Unbounded;
-    font-size: 12rem;
+    font-size: 10rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -256,7 +257,17 @@ h1, h2, h3, h4, h5, h6 {
     .app__card-timer {
         font-size: 6rem;
     }
+
+    .card-container--tasks-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       
+    }
+    
 }
+
+
 
 /* dropdown */
 .dropdown-container {
@@ -329,6 +340,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+   
 }
 
 .app__section-task-content {
@@ -560,4 +572,10 @@ input[type="checkbox"] {
     color: #e6e6e6;
     opacity: 0.8;
     cursor: not-allowed;
+}
+
+.card-container--tasks-container{
+    display: flex;
+    justify-content: center;
+   
 }
